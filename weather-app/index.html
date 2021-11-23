@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/plugins.css">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -16,14 +17,20 @@
 <body>
 
   <div class="main-container page-width">
+    <div class="no-content shown">
+      <img src="img/curve-arrow.png" />
+    </div>
     <div class="weather-wrapper">
+      <div class="location-input">
+        <input type="text" placeholder="Enter city" />
+      </div>
       <div class="today"></div>
       <div class="future"></div>
     </div>
   </div>
 
 
-  
+
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
