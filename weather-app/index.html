@@ -30,10 +30,16 @@
   </div>
 
 
-
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="https://unpkg.com/dayjs-plugin-utc"></script>
+  <script>
+    dayjs().format()
+    dayjs.extend(dayjsPluginUTC.default)
+  </script>
   <script src="js/main.js"></script>
+
 
 </body>
 

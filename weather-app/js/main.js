@@ -4,11 +4,9 @@ let notifier = new AWN({
 
 $(document).ready(function() {
   let api_key = "9dad23fcdbe30ae17ead09ad9fa3cc40";
-  let shorthand_days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  let longhand_days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   let regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
 
-  let today = new Date();
+  let today_day = dayjs().utc();
   let geolocation_enabled = 'geolocation' in navigator;
 
   function findNth(d) {
@@ -21,19 +19,19 @@ $(document).ready(function() {
     }
   }
 
-  function generateFutureForecast(position) {
-    let request_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${api_key}&units=metric&exclude=current,hourly,minutely`;
+  function generateFutureForecast(long,lat) {
+    let request_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${api_key}&units=metric&exclude=current,hourly,minutely`;
 
     $.get(request_url, function(data) {
       let $forecast_container = $('.future');
+      $forecast_container.empty();
 
       for(let i=1;i<6;i++) {
         let daily_data = data.daily[i];
-        let name_of_day = shorthand_days[today.getDay()+i];
-        console.log(daily_data);
+        let future_day = today_day.add(i,'day');
         let html_output = `
         <div class="day-container">
-          <div class="daily-date">${name_of_day}</div>
+          <div class="daily-date">${future_day.format("ddd")}</div>
           <div class="weather-details">
             <img src="http://openweathermap.org/img/wn/${daily_data.weather[0].icon}@2x.png" />
             <div class="weather-desc">${daily_data.weather[0].description}</div>
@@ -57,20 +55,20 @@ $(document).ready(function() {
     let request_url = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${api_key}&units=metric`;
     $.get(request_url, function(data) {
       parseTodaysData(data);
-      generateFutureForecast(position);
     });
 
   }
 
   function parseTodaysData(data) {
-    console.log(data);
     let $today_container = $('.today');
     $today_container.empty();
     $('.no-content').removeClass('shown');
-    let date_arr = today.toDateString().split(' ');
+
+    let timezone = data.timezone;
+    today_day = today_day.add(timezone, 'second');
 
     let html_output = `
-    <div class="day" style="display:none;">${longhand_days[today.getDay()] + ', ' + date_arr[1] + ' ' + date_arr[2] + findNth(today.getDate())}</div>
+    <div class="day">${today_day.format('dddd') + ', ' + today_day.format("MMM") + ' ' + today_day.date() + findNth(today_day.date())}</div>
     <div class="location">${data.name}, ${regionNames.of(data.sys.country)}</div>
     <div class="cloud-coverage">Cloud Coverage: ${data.clouds.all}%</div>
     <div class="humitidy">Humidity: ${data.main.humidity}%</div>
@@ -85,6 +83,11 @@ $(document).ready(function() {
     <div class="weather-meta text-center">${data.weather[0].description}</div>`;
 
       $today_container.append(html_output);
+
+      let longitude = data.coord.lon;
+      let latitude = data.coord.lat;
+
+      generateFutureForecast(longitude,latitude);
   }
 
   function initInputLocationDate(location) {

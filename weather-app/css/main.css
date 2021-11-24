@@ -407,3 +407,42 @@ textarea {
 .awn-toast-content {
   text-transform: capitalize;
 }
+
+@media only screen and (max-width: 768px) {
+  .main-container {
+    margin: 15px;
+  }
+  .future {
+    overflow-x: scroll;
+    justify-content: flex-start;
+  }
+  .day-container {
+    flex: 0 0 60%;
+  }
+  .weather-meta {
+    font-size: 28px;
+  }
+  .today .current-temp {
+    font-size: 125px;
+    order: 3;
+  }
+  .weather-icon {
+    top: -100px;
+    right: -100px;
+  }
+  .today .temperature {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+  .today .max-temp,
+  .today .min-temp {
+    font-size: 32px;
+  }
+  .today .temperature .min-temp,
+  .today .temperature .max-temp {
+    display: none;
+  }
+  .today {
+    overflow: hidden;
+  }
+}
