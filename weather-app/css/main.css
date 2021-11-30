@@ -400,13 +400,51 @@ textarea {
 }
 
 .cloud-coverage,
-.humitidy {
+.humitidy,
+.day-container .min-temp,
+.day-container .max-temp,
+.day-container .weather-desc {
   text-shadow: 2px 2px 5px #00000078;
 }
 
 .awn-toast-content {
   text-transform: capitalize;
 }
+
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.day-container .weather-desc {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.day-container .temperature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.day-container .temperature .min-temp,
+.day-container .temperature .max-temp {
+  flex: 0 0 50%;
+}
+
+.day-container .temperature .humitidy {
+  flex: 1;
+}
+
+.day-container .daily-date {
+  font-size: 28px;
+  text-shadow: 2px 2px 5px #00000078;
+}
+
 
 @media only screen and (max-width: 768px) {
   .main-container {
@@ -444,5 +482,14 @@ textarea {
   }
   .today {
     overflow: hidden;
+  }
+  .weather-wrapper {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .no-content {
+    right: 75px;
   }
 }

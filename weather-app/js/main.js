@@ -36,7 +36,6 @@ $(document).ready(function() {
             <img src="http://openweathermap.org/img/wn/${daily_data.weather[0].icon}@2x.png" />
             <div class="weather-desc">${daily_data.weather[0].description}</div>
           </div>
-          <div class="cloud-coverage">${daily_data.clouds}%</div>
           <div class="temperature">
             <div class="min-temp">${Math.round(daily_data.temp.min)}°</div>
             <div class="max-temp">${Math.round(daily_data.temp.max)}°</div>
