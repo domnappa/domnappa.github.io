@@ -62,7 +62,7 @@ $(document).on('ready', function() {
             return;
         }
         for(let i=0;i<players;i++) {
-            let delay = 250*i;
+            let delay = 100*i;
             let player = i+1;
             setTimeout(function() {
                 drawCards(5).then( response => {
@@ -181,26 +181,12 @@ $(document).on('ready', function() {
             let card_image = document.createElement('img');
             card_image.classList = `card-display card-display--hand card-display--player-${player}`;
             card_image.setAttribute('data-card-id',cards[i].code);
-            player === 2 ? card_image.src = "/cardback_0.png" : card_image.src = cards[i].images.png;
+            player !== 1 ? card_image.src = "/cardback_0.png" : card_image.src = cards[i].images.png;
             player_hand.appendChild(card_image);
         }
     }
 
     function setGameListeners() {
-        let action_buttons = document.querySelectorAll('.game-action');
-
-        action_buttons.forEach(el => {
-            el.addEventListener('click', (e) => {
-                switch(e.target.dataset.action) {
-                    case "draw-card":
-                        drawCards(1).then(response => {
-                            renderCards(response.cards, 1);
-                        });
-                        break;
-                }
-            });
-        });
-
         document.addEventListener('click', (e) => {
             if(e.target.classList.contains('card-display--player-1')) {
                 document.getElementById('play-area').textContent = '';
@@ -227,6 +213,7 @@ $(document).on('ready', function() {
     function initGame() {
         generateDeck().then(response => {
             deck_id = response.deck_id;
+            history.pushState(null, '', `/game?deck_id=${deck_id}`);
             dealNewHands();
             setGameListeners();
         });

@@ -109,6 +109,10 @@ body {
     display: block;
 }
 
+.right-col {
+    text-align: right;
+}
+
 @media only screen and (max-width: 1900px) {
     .card-display {
         width: 100px;
