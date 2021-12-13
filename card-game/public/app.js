@@ -1,6 +1,6 @@
 $(document).on('ready', function() {
     let api_url = "https://deckofcardsapi.com/api/deck/";
-    let deck_id, cards_remaining, graveyard = [];
+    let deck_id, cards_remaining, played_cards, discard = [];
     let suite_scoring = [
         "C","D","H","S"
     ];
@@ -8,12 +8,13 @@ $(document).on('ready', function() {
         "","1","2","3","4","5","6","7","8","9","0","J","Q","K","A"
     ];
     let play_area = document.getElementById('play-area');
-    let played_cards;
+    let players = 2;
 
     async function drawCards(num_of_cards) {
         let p = new Promise((response) => {
             let request_url = api_url + `${deck_id}/draw/?count=${num_of_cards}`;
             $.get(request_url, function(data) {
+                cards_remaining = data.remaining;
                 response(data);
             })
         });
@@ -23,7 +24,8 @@ $(document).on('ready', function() {
 
     async function generateDeck() {
         let p = new Promise((response) => {
-            let request_url = api_url + "/new/shuffle/?deck_count=1";
+            let deck_count = players-1;
+            let request_url = api_url + `/new/shuffle/?deck_count=${deck_count}`;
             $.get(request_url, function(data) {
                 response(data);
             })
@@ -38,17 +40,65 @@ $(document).on('ready', function() {
         card_to_play.remove();
     }
 
-    function determineWinner() {
-        played_cards = play_area.querySelectorAll('.card-display--played');
-        let winner_id = findWinningPlayersId();
-        calculateScore(winner_id);
+    function checkHandSize() {
+        let hand_el = document.querySelectorAll('.card-display--hand');
+        if(hand_el.length === 0) {
+            dealNewHands();
+        }
     }
+
 
     function calculateScore(winner) {
         let lowest_value = findLowestFace();
         let highest_value = findHighestFace();
         let points = highest_value - lowest_value;
         updateScore(points,winner);
+        checkHandSize();
+    }
+
+    function dealNewHands() {
+        if (cards_remaining < (players*5)) {
+            endGame();
+            return;
+        }
+        for(let i=0;i<players;i++) {
+            let delay = 250*i;
+            let player = i+1;
+            setTimeout(function() {
+                drawCards(5).then( response => {
+                    renderCards(response.cards,player);
+                    updateGameCounters();
+                });
+            }, delay)
+        }
+    }
+
+    function determineRoundWinner() {
+        played_cards = play_area.querySelectorAll('.card-display--played');
+        let winner_id = findWinningPlayersId();
+        highlightWinningCard(winner_id);
+        calculateScore(winner_id);
+    }
+
+    function determineGameWinner() {
+        let scores = document.querySelectorAll('.score');
+        let current_highest = 0, winner;
+        scores.forEach(el => {
+            let player_id = el.dataset.player;
+            let score = parseInt(document.querySelector(`.score[data-player="${player_id}"] span`).innerText);
+            if (score > current_highest) {
+                current_highest = score;
+                winner = player_id;
+            }
+        });
+
+        return winner;
+    }
+
+    function endGame() {
+        let endgame_notification_el = document.querySelector('.endgame-notification');
+        endgame_notification_el.innerText = `Player ${determineGameWinner()} wins!`;
+        endgame_notification_el.classList.add('shown');
     }
 
     function findWinningPlayersId() {
@@ -111,6 +161,10 @@ $(document).on('ready', function() {
         return Math.floor(Math.random() * max);
     }
 
+    function highlightWinningCard(winner_id) {
+        document.querySelector(`.card-display--played[data-player="${winner_id}"]`).classList.add('winner');
+    }
+
     function playCard(card_id, player_id) {
         let combat_zone = document.getElementById('play-area');
         let card_image = document.createElement('img');
@@ -153,30 +207,27 @@ $(document).on('ready', function() {
                 e.target.remove();
                 playCard(e.target.dataset.cardId,1);
                 ai_move();
-                determineWinner();
+                determineRoundWinner();
             }
         })
     }
 
     function updateScore(points,player) {
-        let score_counter = document.querySelector(`.score--player-${player}`);
+        let score_counter = document.querySelector(`.score[data-player="${player}"] span`);
         let current_score = parseInt(score_counter.innerText);
         score_counter.innerText = current_score + points;
+    }
+
+    function updateGameCounters() {
+        let cards_remaining_el = document.querySelector('.cards-remaining span');
+        cards_remaining_el.innerHTML = cards_remaining;
     }
 
 
     function initGame() {
         generateDeck().then(response => {
             deck_id = response.deck_id;
-            drawCards(5).then( response => {
-                renderCards(response.cards,1);
-            });
-            setTimeout(function() {
-                drawCards(5).then( response => {
-                    renderCards(response.cards,2);
-                });
-            }, 250);
-
+            dealNewHands();
             setGameListeners();
         });
     }

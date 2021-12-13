@@ -46,6 +46,7 @@ body {
 
 .playmat {
     height: 90vh;
+    margin-top: 5vh;
     display: flex;
     justify-content: center;
 }
@@ -81,4 +82,41 @@ body {
 
 .combat-zone .card-display[data-player="2"] {
     top: 0;
+}
+
+.card-display--played.winner {
+    box-shadow: 0 0 20px 5px #fff700;
+    border: none;
+}
+
+.endgame-notification {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 25px;
+    color: #fff;
+    font-size: 100px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 20px 50px;
+    text-shadow: 0 0 20px black;
+    background-color: #0000004f;
+}
+
+.endgame-notification.shown {
+    display: block;
+}
+
+@media only screen and (max-width: 1900px) {
+    .card-display {
+        width: 100px;
+    }
+    .hand {
+        min-height: 150px;
+    }
+    .endgame-notification {
+        font-size: 70px;
+    }
 }

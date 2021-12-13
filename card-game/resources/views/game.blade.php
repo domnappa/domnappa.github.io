@@ -1,9 +1,8 @@
 <x-layout>
-    <h1>Game screen</h1>
     <div class="playmat">
         <div class="left-col">
-            <div class="score--player-1">0</div>
-            <div class="score--player-2">0</div>
+            <div class="score" data-player="1">Player 1: <span>0</span></div>
+            <div class="score" data-player="2">Player 2: <span>0</span></div>
         </div>
         <div class="center-col">
             <div id="player-2" class="hand"></div>
@@ -11,7 +10,10 @@
             <div id="player-1" class="hand"></div>
         </div>
         <div class="right-col">
-
+            <div class="cards-remaining">
+                <span>0</span> Cards remaining
+            </div>
         </div>
     </div>
+    <div class="endgame-notification"></div>
 </x-layout>
