@@ -12,13 +12,14 @@ body {
 .btn {
     background-color: #7e8b9d;
     max-width: 250px;
-    padding: 10px 5px;
+    padding: 10px 20px;
     border-radius: 5px;
     text-align: center;
     text-transform: uppercase;
     font-weight: 800;
     cursor: pointer;
     user-select: none;
+    display: inline-block;
 }
 
 .card-display {
@@ -42,6 +43,7 @@ body {
     align-items: center;
     margin: 20px 0;
     min-height: 210px;
+    user-select: none;
 }
 
 .playmat {
@@ -111,6 +113,43 @@ body {
 
 .right-col {
     text-align: right;
+}
+
+.score {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.score[data-player="2"] {
+    order: -1;
+}
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.notification-actions {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.notification-content {
+    margin-bottom: 25px;
+}
+
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    margin: 0 auto;
+    user-select: none;
+    z-index: -1;
 }
 
 @media only screen and (max-width: 1900px) {

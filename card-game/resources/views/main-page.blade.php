@@ -1,8 +1,5 @@
 <x-layout>
-    <h1>Hello there</h1>
-    <div>
-        Some content about the game
-    </div>
+    <h1>Card Game</h1>
     <div class="main-controls">
         <a href="/game">
             <div class="btn">

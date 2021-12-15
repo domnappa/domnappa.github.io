@@ -1,4 +1,5 @@
 <x-layout>
+    <canvas class="confetti" id="canvas"></canvas>
     <div class="playmat">
         <div class="left-col">
             <div class="score" data-player="1">Player 1: <span>0</span></div>
@@ -15,5 +16,11 @@
             </div>
         </div>
     </div>
-    <div class="endgame-notification"></div>
+    <div class="endgame-notification">
+        <div class="notification-content"></div>
+        <div class="notification-actions">
+            <a href="/" class="btn">Go Back</a>
+            <a href="/game" class="btn">Restart</a>
+        </div>
+    </div>
 </x-layout>

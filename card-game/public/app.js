@@ -97,8 +97,11 @@ $(document).on('ready', function() {
 
     function endGame() {
         let endgame_notification_el = document.querySelector('.endgame-notification');
-        endgame_notification_el.innerText = `Player ${determineGameWinner()} wins!`;
+        let endgame_notification_content_el = document.querySelector('.notification-content');
+        endgame_notification_content_el.innerText = `Player ${determineGameWinner()} wins!`;
         endgame_notification_el.classList.add('shown');
+        initConfetti();
+        render();
     }
 
     function findWinningPlayersId() {
@@ -219,6 +222,8 @@ $(document).on('ready', function() {
         });
     }
 
-    initGame();
+    if (document.querySelector('.playmat')) {
+        initGame();
+    }
 
 })
