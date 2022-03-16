@@ -1,0 +1,165 @@
+body {
+    background-color: #127453;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+}
+
+.page-width {
+    max-width: 1300px;
+    margin: auto;
+}
+
+.btn {
+    background-color: #7e8b9d;
+    max-width: 250px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+}
+
+.card-display {
+    transition: 150ms;
+    width: 150px;
+    border-radius: 8px;
+}
+
+.hand .card-display:not(.card-display--player-2):hover {
+    box-shadow: 0 0 20px #000000bf;
+    cursor: pointer;
+}
+
+.hand .card-display:not(:last-child) {
+    margin-right: 15px;
+}
+
+.hand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    min-height: 210px;
+    user-select: none;
+}
+
+.playmat {
+    height: 90vh;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.left-col,
+.right-col {
+    flex: 1;
+}
+
+.center-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 825px;
+}
+
+.combat-zone {
+    flex: 1;
+    width: 100%;
+    position: relative;
+}
+
+.combat-zone .card-display {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.combat-zone .card-display[data-player="1"] {
+    bottom: 0;
+}
+
+.combat-zone .card-display[data-player="2"] {
+    top: 0;
+}
+
+.card-display--played.winner {
+    box-shadow: 0 0 20px 5px #fff700;
+    border: none;
+}
+
+.endgame-notification {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 25px;
+    color: #fff;
+    font-size: 100px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 20px 50px;
+    text-shadow: 0 0 20px black;
+    background-color: #0000004f;
+}
+
+.endgame-notification.shown {
+    display: block;
+}
+
+.right-col {
+    text-align: right;
+}
+
+.score {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.score[data-player="2"] {
+    order: -1;
+}
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.notification-actions {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.notification-content {
+    margin-bottom: 25px;
+}
+
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    margin: 0 auto;
+    user-select: none;
+    z-index: -1;
+}
+
+@media only screen and (max-width: 1900px) {
+    .card-display {
+        width: 100px;
+    }
+    .hand {
+        min-height: 150px;
+    }
+    .endgame-notification {
+        font-size: 70px;
+    }
+}
