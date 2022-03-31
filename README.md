@@ -6,3 +6,5 @@
 
 [Platformer Game](https://domnappa.github.io/platformer-game/index.html)
 
+[Bingo Board](https://domnappa.github.io/bingo-board/index.html)
+
