@@ -1,0 +1,81 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #444444;
+}
+
+body {
+  margin: 0;
+}
+
+.board-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-table {
+  width: 1080px;
+  margin: auto;
+}
+
+.board-table tr {
+  height: 200px;
+}
+
+.board-cell {
+  background-color: #c7c7c7;
+  text-align: center;
+  user-select: none;
+}
+
+.board-cell input {
+  background: transparent;
+  text-align: center;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.board-cell.marked {
+  background-color: #83c583;
+}
+
+.board-cell.editing {
+  background-color: #c7d1ff;
+}
+
+.board-cell input[disabled] {
+  pointer-events: none;
+}
+
+.board-cell:hover {
+  opacity: 0.8;
+}
+
+.game-controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.game-controls > div {
+  padding: 10px 20px;
+}
+
+.game-controls .exit-board {
+  background-color: #ff6363;
+}
+
+.game-controls .save-board {
+  background-color: #ffa163;
+}
+
+.game-controls .edit-board {
+  background-color: #6378ff;
+}
