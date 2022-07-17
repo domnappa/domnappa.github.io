@@ -1,0 +1,147 @@
+body {
+  background-color: #000;
+}
+
+.game {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  margin-top: -25px;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.board-top {
+  height: 80px;
+  width: 100%;
+  background-image: url("assets/ring-ropes-tile.png");
+  background-repeat: repeat-x;
+}
+
+.board-container {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+  background-color: #008088;
+  padding: 0 20px 20px;
+  border-radius: 0 0 10px 10px;
+}
+
+.board-container:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 80px;
+  background-image: url("assets/left-side-ring.png");
+  background-repeat: no-repeat;
+}
+
+.board-container:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 80px;
+  background-image: url("assets/right-side-ring.png");
+  background-repeat: no-repeat;
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  border: 1px solid #008087;
+  border-radius: 15px;
+}
+
+.board-row.board-row--active {
+  border: 1px solid #00f2ff;
+}
+
+.board-tile {
+  color: #fff;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  user-select: none;
+  height: 85px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  border-radius: 15px;
+  background-color: #00000045;
+}
+
+.board-tile img {
+  pointer-events: none;
+}
+
+.action {
+  width: 92px;
+  height: 85px;
+  text-align: center;
+}
+
+.action[draggable='true'] {
+  cursor: grab;
+}
+
+.action[draggable='false'] {
+  cursor: not-allowed;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.selection-container--left {
+  margin-right: 15px;
+}
+
+.selection-container--right {
+  margin-left: 15px;
+}
+
+.action img {
+  pointer-events: none;
+  user-drag: none;
+}
+
+.action--reversed img {
+  transform: rotateY(180deg);
+}
+
+.correct {
+  background-color: #5b9b55;
+}
+
+.present {
+  background-color: #ab942a;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}

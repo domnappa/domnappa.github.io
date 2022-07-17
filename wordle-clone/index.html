@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Punchle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas class="confetti-container" id="confetti-canvas"></canvas>
+
+<div class="game">
+  <div class="selection-container selection-container--left">
+    <div class="action" draggable="true" data-action="dodge-left">
+      <img class="action-image" src="assets/lilmac-actions/dodge-left.png" draggable="false" data-action="dodge-left" alt="dodge-left" />
+    </div>
+    <div class="action" draggable="true" data-action="duck-left">
+      <img class="action-image" src="assets/lilmac-actions/duck-left.png" draggable="false" data-action="duck-left" alt="duck-left" />
+    </div>
+    <div class="action" draggable="true" data-action="short-punch-left">
+      <img class="action-image" src="assets/lilmac-actions/short-punch-left.png" draggable="false" data-action="short-punch-left" alt="short-punch-left" />
+    </div>
+    <div class="action" draggable="true" data-action="long-punch-left">
+      <img class="action-image" src="assets/lilmac-actions/long-punch-left.png" draggable="false" data-action="long-punch-left" alt="long-punch-left" />
+    </div>
+  </div>
+  <div class="board-container">
+    <div class="board-top">
+    </div>
+    <div class="board">
+      <div class="board-row board-row--active">
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+      </div>
+      <div class="board-row">
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+      </div>
+      <div class="board-row">
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+      </div>
+      <div class="board-row">
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+      </div>
+      <div class="board-row">
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+      </div>
+      <div class="board-row">
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+        <div class="board-tile">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="selection-container selection-container--right">
+    <div class="action" draggable="true" data-action="dodge-right">
+      <img class="action-image" src="assets/lilmac-actions/dodge-right.png" draggable="false" data-action="dodge-right" alt="dodge-right" />
+    </div>
+    <div class="action" draggable="true" data-action="duck-right">
+      <img class="action-image" src="assets/lilmac-actions/duck-right.png" draggable="false" data-action="duck-right" alt="duck-right" />
+    </div>
+    <div class="action" draggable="true"  data-action="short-punch-right">
+      <img class="action-image" src="assets/lilmac-actions/short-punch-right.png" draggable="false" data-action="short-punch-right" alt="short-punch-right" />
+    </div>
+    <div class="action" draggable="true"  data-action="long-punch-right">
+      <img class="action-image" src="assets/lilmac-actions/long-punch-right.png" draggable="false" data-action="long-punch-right" alt="long-punch-right" />
+    </div>
+  </div>
+</div>
+
+
+<script src="confetti.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
